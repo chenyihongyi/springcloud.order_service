@@ -8,6 +8,7 @@ import com.springcloud.demo.order_service.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,11 +30,15 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 /*    @Autowired
     private LoadBalancerClient loadBalancer;*/
 
- @Autowired
- private ProductClient productClient;
+    @Autowired
+    private ProductClient productClient;
 
     @Override
     public ProductOrder save(int userId,int productId) {
+
+        if(userId == 1){
+            return null;
+        }
 
      //  Map<String, Object> productMap =  restTemplate.getForObject("http://product-service/api/v1/product/find?id="+productId, Map.class);
 
