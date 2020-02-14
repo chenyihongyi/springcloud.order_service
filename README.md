@@ -54,7 +54,7 @@
 		1、如果每个机器配置一样，则建议不修改策略 (推荐)
 		2、如果部分机器配置强，则可以改为 WeightedResponseTimeRule
 		
-5.微服务调用方式之feign 实战 订单调用商品服务
+5.微服务调用方式之feign  订单调用商品服务
   	简介：改造电商项目 订单服务 调用商品服务获取商品信息
   		Feign： 伪RPC客户端(本质还是用http)
   		官方文档: https://cloud.spring.io/spring-cloud-openfeign/
