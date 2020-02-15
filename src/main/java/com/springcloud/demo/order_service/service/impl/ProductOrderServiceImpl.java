@@ -5,6 +5,8 @@ import com.springcloud.demo.order_service.domain.ProductOrder;
 import com.springcloud.demo.order_service.service.ProductClient;
 import com.springcloud.demo.order_service.service.ProductOrderService;
 import com.springcloud.demo.order_service.utils.JsonUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -23,6 +25,8 @@ import java.util.UUID;
  */
 @Service
 public class ProductOrderServiceImpl implements ProductOrderService {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
 /* @Autowired
  private RestTemplate restTemplate;*/
@@ -51,16 +55,18 @@ public class ProductOrderServiceImpl implements ProductOrderService {
        //调用方式三
      String response = productClient.findById(productId);
 
-     JsonNode jsonNode = JsonUtils.str2JsonNode(response);
+        //积分服务 TODO
+        logger.info("service save order");
+        JsonNode jsonNode = JsonUtils.str2JsonNode(response);
 
-     ProductOrder productOrder = new ProductOrder();
-     productOrder.setCreateTime(new Date());
-     productOrder.setUserId(userId);
-     productOrder.setTradeNo(UUID.randomUUID().toString());
-     //productOrder.setProductName(productMap.get("name").toString());
-     // productOrder.setPrice(Integer.parseInt(productMap.get("price").toString()));
-     productOrder.setProductName(jsonNode.get("name").toString());
-     productOrder.setPrice(Integer.parseInt(jsonNode.get("price").toString()));
-     return productOrder;
+        ProductOrder productOrder = new ProductOrder();
+        productOrder.setCreateTime(new Date());
+        productOrder.setUserId(userId);
+        productOrder.setTradeNo(UUID.randomUUID().toString());
+        //productOrder.setProductName(productMap.get("name").toString());
+        // productOrder.setPrice(Integer.parseInt(productMap.get("price").toString()));
+        productOrder.setProductName(jsonNode.get("name").toString());
+        productOrder.setPrice(Integer.parseInt(jsonNode.get("price").toString()));
+        return productOrder;
     }
 }

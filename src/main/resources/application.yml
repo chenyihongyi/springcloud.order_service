@@ -18,6 +18,14 @@ spring:
     port: 6379
     password: abc123
     timeout: 2000
+      #zipkin服务所在地址
+  zipkin:
+    base-url: http://47.113.106.197:9411
+
+      #配置采样百分比,开发环境可以设置为1，表示全部，生产就用默认
+  sleuth:
+    sampler:
+      probability: 1
 
 #自定义负载均衡策略
 product-service:
