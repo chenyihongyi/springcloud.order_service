@@ -31,8 +31,8 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 4000
-        readTimeout: 4000
+        connectTimeout: 2000
+        readTimeout: 1000
 
 #把hystrix超时时间禁用
 #hystrix:
@@ -51,7 +51,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 4000
+            timeoutInMilliseconds: 1000
 
 management:
   endpoints:
